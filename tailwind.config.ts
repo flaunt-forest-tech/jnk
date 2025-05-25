@@ -1,4 +1,4 @@
-import type { Config } from 'tailwindcss'
+import type { Config } from 'tailwindcss';
 
 const config: Config = {
   content: ['./src/**/*.{js,ts,jsx,tsx}'],
@@ -15,7 +15,7 @@ const config: Config = {
           300: '#BAC1BF',
           200: '#D1D6D4',
           100: '#E8EAEA',
-          0: '#FFFFFF'
+          0: '#FFFFFF',
         },
         secondary: {
           900: '#711003',
@@ -27,7 +27,7 @@ const config: Config = {
           300: '#F9B270',
           200: '#FDD3A0',
           100: '#FEEBCF',
-          0: '#FFFFFF'
+          0: '#FFFFFF',
         },
         success: {
           900: '#0D6630',
@@ -38,7 +38,7 @@ const config: Config = {
           400: '#78E672',
           300: '#9EF290',
           200: '#C6FAB7',
-          100: '#E5FCDA'
+          100: '#E5FCDA',
         },
         error: {
           900: '#780828',
@@ -49,7 +49,7 @@ const config: Config = {
           400: '#FD7561',
           300: '#FE9B80',
           200: '#FEC4AB',
-          100: '#FEE5D4'
+          100: '#FEE5D4',
         },
         warning: {
           900: '#7A4800',
@@ -60,7 +60,7 @@ const config: Config = {
           400: '#FFCD3F',
           300: '#FFDC66',
           200: '#FFEA99',
-          100: '#FFF6CC'
+          100: '#FFF6CC',
         },
         info: {
           900: '#091B77',
@@ -71,7 +71,7 @@ const config: Config = {
           400: '#6692FB',
           300: '#85ACFD',
           200: '#ADCAFE',
-          100: '#D6E5FE'
+          100: '#D6E5FE',
         },
         black: {
           900: '#0C0407',
@@ -83,12 +83,12 @@ const config: Config = {
           300: '#B3B3B3',
           200: '#CCCCCC',
           100: '#E5E5E5',
-          50: '#F2F2F2'
-        }
-      }
-    }
+          50: '#F2F2F2',
+        },
+      },
+    },
   },
-  plugins: []
-}
+  plugins: [],
+};
 
-export default config 
+export default config;
