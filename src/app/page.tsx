@@ -4,14 +4,12 @@ export default function Home() {
   return (
     <div className="flex flex-col min-h-screen">
       {/* Main Content */}
-      <section className="flex-grow py-12">
-        <div className="max-w-7xl px-4 sm:px-6 lg:px-8">
-          <Hero />
-        </div>
+      <section className="flex-grow">
+        <Hero />
       </section>
 
       {/* Product Styles Section - Placeholder */}
-      <section className="">
+      <section className="py-12">
         Product styles
       </section>
     </div>

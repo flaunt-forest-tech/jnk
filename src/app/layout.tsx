@@ -30,13 +30,19 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col`}
       >
         <header className="bg-white border-b">
+          <div className="max-w-[1440px] mx-auto w-full px-6 lg:px-8">
             <NavBar />
+          </div>
         </header>
 
-        <main className="flex-grow">{children}</main>
+        <main className="flex-grow">
+          <div className="max-w-[1440px] mx-auto w-full px-6 lg:px-8">
+            {children}
+          </div>
+        </main>
 
         <footer className="bg-gray-50 border-t">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+          <div className="max-w-[1440px] mx-auto w-full px-6 lg:px-8 py-6">
             <div className="flex flex-col md:flex-row justify-between items-center">
               <div className="text-sm text-gray-600">
                 © {new Date().getFullYear()} J&K Cabinets. All rights reserved.
