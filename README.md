@@ -1,36 +1,80 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# JNK
 
-## Getting Started
+A modern web application built with Next.js 15, React 19, and TypeScript.
 
-First, run the development server:-
+## 🚀 Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- ⚡️ Next.js 15 with App Router
+- 🔥 React 19
+- 💎 TypeScript
+- 🎨 Tailwind CSS for styling
+- 📝 ESLint + Prettier for code quality
+- 🐶 Husky for git hooks
+- 🔍 SEO optimization with next-seo
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🛠️ Tech Stack
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Framework:** Next.js 15.3.2
+- **Language:** TypeScript
+- **Styling:** Tailwind CSS
+- **Code Quality:**
+  - ESLint
+  - Prettier
+  - Husky
+  - lint-staged
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🏁 Getting Started
 
-## Learn More
+### Prerequisites
 
-To learn more about Next.js, take a look at the following resources:
+- Node.js (Latest LTS version recommended)
+- npm or yarn
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Installation
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. Clone the repository:
+   ```bash
+   git clone [your-repository-url]
+   cd jnk
+   ```
 
-## Deploy on Vercel
+2. Install dependencies:
+   ```bash
+   npm install
+   # or
+   yarn install
+   ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+3. Start the development server:
+   ```bash
+   npm run dev
+   # or
+   yarn dev
+   ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+4. Open [http://localhost:3000](http://localhost:3000) in your browser to see the result.
+
+## 📝 Available Scripts
+
+- `npm run dev` - Start development server with Turbopack
+- `npm run build` - Build the application for production
+- `npm run start` - Start the production server
+- `npm run lint` - Run ESLint
+- `npm run prepare` - Install Husky git hooks
+
+## 🔧 Development
+
+This project uses several tools to ensure code quality:
+
+- **ESLint** for code linting
+- **Prettier** for code formatting
+- **Husky** for git hooks
+- **lint-staged** for running linters on staged files
+
+## 📄 License
+
+This project is private and proprietary.
+
+## 👥 Contributing
+
+Please read our contributing guidelines before submitting pull requests.
