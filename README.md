@@ -34,7 +34,7 @@ A modern web application built with Next.js 15, React 19, and TypeScript.
 
 1. Clone the repository:
    ```bash
-   git clone [your-repository-url]
+   git clone https://github.com/flaunt-forest-tech/jnk.git
    cd jnk
    ```
 
@@ -75,6 +75,3 @@ This project uses several tools to ensure code quality:
 
 This project is private and proprietary.
 
-## 👥 Contributing
-
-Please read our contributing guidelines before submitting pull requests.
