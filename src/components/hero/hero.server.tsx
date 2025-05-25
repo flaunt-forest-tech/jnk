@@ -8,11 +8,6 @@ const Hero = () => {
         <h1 className="text-4xl sm:text-6xl md:text-[5rem] leading-none font-black tracking-tight">
           UNIQUE
         </h1>
-        <img
-          src="https://cdn.prod.website-files.com/658e0f2023ee3a398167cfff/68261d707d9be7f1d34e8680_new-logo%20-%20white.avif"
-          alt="Placeholder"
-          className="w-24 h-16 sm:w-32 sm:h-20 object-cover rounded-lg shadow-lg mt-2 sm:mt-0"
-        />
       </div>
       <h1 className="text-4xl sm:text-6xl md:text-[5rem] leading-none font-black tracking-tight mb-8 sm:mb-12">
         COLLECTION
