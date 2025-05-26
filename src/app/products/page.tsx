@@ -22,7 +22,7 @@ export default function Products() {
               key={type.name}
               className={`px-6 py-3 rounded-lg text-sm font-medium transition-all duration-200 ${
                 idx === selectedTypeIdx
-                  ? "bg-secondary-700 text-white shadow-md"
+                  ? "bg-brand text-white shadow-md"
                   : "bg-white text-gray-700 hover:bg-gray-50 border border-gray-200"
               }`}
               onClick={() => setSelectedTypeIdx(idx)}
@@ -64,7 +64,7 @@ export default function Products() {
               </div>
 
               {/* Hover Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-b from-secondary-700/95 to-secondary-800/95 opacity-0 group-hover:opacity-100 transition-all duration-300 ease-in-out">
+              <div className="absolute inset-0 bg-gradient-to-b from-brand/95 to-brand-800/95 opacity-0 group-hover:opacity-100 transition-all duration-300 ease-in-out">
                 <div className="absolute inset-0 flex flex-col p-6 text-white overflow-y-auto">
                   <div className="flex-none">
                     <h3 className="text-xl font-bold mb-2">{product.name}</h3>
@@ -73,11 +73,11 @@ export default function Products() {
                   
                   <div className="flex-grow space-y-4">
                     <div>
-                      <p className="text-sm font-medium mb-2 text-secondary-100">Available Variants:</p>
+                      <p className="text-sm font-medium mb-2 text-brand-50">Available Variants:</p>
                       <ul className="text-xs space-y-2">
                         {product.variants.map((variant) => (
                           <li key={variant.code} className="flex justify-between items-center bg-white/10 p-2 rounded">
-                            <span className="font-medium text-secondary-100">{variant.code}</span>
+                            <span className="font-medium text-brand-50">{variant.code}</span>
                             <span className="text-gray-200">{variant.dimensions}</span>
                           </li>
                         ))}
@@ -86,7 +86,7 @@ export default function Products() {
                     
                     {product.availableStyles && (
                       <div>
-                        <p className="text-sm font-medium mb-2 text-secondary-100">Available Styles:</p>
+                        <p className="text-sm font-medium mb-2 text-brand-50">Available Styles:</p>
                         <div className="flex flex-wrap gap-2">
                           {product.availableStyles.map((style) => (
                             <span key={style} className="text-xs bg-white/10 px-2 py-1 rounded">
