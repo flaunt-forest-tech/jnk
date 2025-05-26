@@ -11,8 +11,8 @@ export default function Products() {
   const selectedType = productTypes[selectedTypeIdx];
 
   return (
-    <div className="flex flex-col min-h-screen  py-12">
-      <div className="max-w-7xl  w-full">
+    <div className="flex flex-col min-h-screen py-12 ">
+      <div className="max-w-7xl w-full ">
         {/* Page Title */}
         <h1 className="text-4xl font-bold text-gray-900 mb-8">Our Products</h1>
         
@@ -23,7 +23,7 @@ export default function Products() {
               key={type.name}
               className={`px-6 py-3 rounded-lg text-sm font-medium transition-all duration-200 ${
                 idx === selectedTypeIdx
-                  ? "bg-primary-900 text-white shadow-md"
+                  ? "bg-secondary-700 text-white shadow-md"
                   : "bg-white text-gray-700 hover:bg-gray-50 border border-gray-200"
               }`}
               onClick={() => setSelectedTypeIdx(idx)}
@@ -43,33 +43,15 @@ export default function Products() {
           {selectedType.products.map((product) => (
             <div
               key={product.name}
-              className="group bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden transition-all duration-200 hover:shadow-lg hover:-translate-y-1"
+              className="group relative bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
             >
               {/* Product Image */}
-              <div className="relative aspect-[4/3] overflow-hidden">
+              <div className="aspect-[4/3] overflow-hidden bg-gray-100">
                 <img
                   src={placeholderImg}
                   alt={product.name}
-                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
-                {/* Hover Overlay */}
-                <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-70 transition-all duration-200 flex items-center justify-center">
-                  <div className="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-200 p-6">
-                    <h3 className="text-xl font-bold mb-2">{product.name}</h3>
-                    <p className="text-sm mb-4">{product.description}</p>
-                    <div className="space-y-2">
-                      <p className="text-sm font-medium">Available Variants:</p>
-                      <ul className="text-xs space-y-1">
-                        {product.variants.map((variant) => (
-                          <li key={variant.code} className="flex justify-between">
-                            <span>{variant.code}</span>
-                            <span>{variant.dimensions}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-                </div>
               </div>
               
               {/* Product Info */}
@@ -80,6 +62,43 @@ export default function Products() {
                 <p className="text-sm text-gray-600 line-clamp-2">
                   {product.description}
                 </p>
+              </div>
+
+              {/* Hover Overlay */}
+              <div className="absolute inset-0 bg-gradient-to-b from-secondary-700/95 to-secondary-800/95 opacity-0 group-hover:opacity-100 transition-all duration-300 ease-in-out">
+                <div className="absolute inset-0 flex flex-col p-6 text-white overflow-y-auto">
+                  <div className="flex-none">
+                    <h3 className="text-xl font-bold mb-2">{product.name}</h3>
+                    <p className="text-sm mb-4 text-gray-100">{product.description}</p>
+                  </div>
+                  
+                  <div className="flex-grow space-y-4">
+                    <div>
+                      <p className="text-sm font-medium mb-2 text-secondary-100">Available Variants:</p>
+                      <ul className="text-xs space-y-2">
+                        {product.variants.map((variant) => (
+                          <li key={variant.code} className="flex justify-between items-center bg-white/10 p-2 rounded">
+                            <span className="font-medium text-secondary-100">{variant.code}</span>
+                            <span className="text-gray-200">{variant.dimensions}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    
+                    {product.availableStyles && (
+                      <div>
+                        <p className="text-sm font-medium mb-2 text-secondary-100">Available Styles:</p>
+                        <div className="flex flex-wrap gap-2">
+                          {product.availableStyles.map((style) => (
+                            <span key={style} className="text-xs bg-white/10 px-2 py-1 rounded">
+                              {style}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                </div>
               </div>
             </div>
           ))}
