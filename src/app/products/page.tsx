@@ -21,7 +21,7 @@ export default function Products() {
           {productTypes.map((type, idx) => (
             <button
               key={type.name}
-              className={`px-6 py-3 rounded-lg text-sm font-medium transition-all duration-200 ${
+              className={`px-6 py-3 text-sm font-medium transition-all duration-200 ${
                 idx === selectedTypeIdx
                   ? "bg-brand text-white shadow-md"
                   : "bg-white text-gray-700 hover:bg-gray-50 border border-gray-200"
@@ -43,7 +43,7 @@ export default function Products() {
           {selectedType.products.map((product) => (
             <div
               key={product.name}
-              className="group relative bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
+              className="group relative bg-white border border-gray-200 shadow-sm overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
             >
               {/* Product Image */}
               <div className="aspect-[4/3] overflow-hidden bg-gray-100">
@@ -79,7 +79,7 @@ export default function Products() {
                       <p className="text-sm font-medium mb-2 text-brand-50">Available Variants:</p>
                       <ul className="text-xs space-y-2">
                         {product.variants.map((variant) => (
-                          <li key={variant.code} className="flex justify-between items-center bg-white/10 p-2 rounded">
+                          <li key={variant.code} className="flex justify-between items-center bg-white/10 p-2">
                             <span className="font-medium text-brand-50">{variant.code}</span>
                             <span className="text-gray-200">{variant.dimensions}</span>
                           </li>
@@ -92,7 +92,7 @@ export default function Products() {
                         <p className="text-sm font-medium mb-2 text-brand-50">Available Styles:</p>
                         <div className="flex flex-wrap gap-2">
                           {product.availableStyles.map((style) => (
-                            <span key={style} className="text-xs bg-white/10 px-2 py-1 rounded">
+                            <span key={style} className="text-xs bg-white/10 px-2 py-1">
                               {style}
                             </span>
                           ))}

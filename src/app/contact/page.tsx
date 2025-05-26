@@ -42,15 +42,15 @@ export default function Contact() {
             </div>
 
             <div className="space-y-4">
-              <div className="p-4 bg-gray-50 rounded-lg">
+              <div className="p-4 bg-gray-50">
                 <h3 className="font-medium text-gray-900 mb-2">Address</h3>
                 <p className="text-gray-600">123 Cabinet Street, Woodworking City, WC 12345</p>
               </div>
-              <div className="p-4 bg-gray-50 rounded-lg">
+              <div className="p-4 bg-gray-50">
                 <h3 className="font-medium text-gray-900 mb-2">Phone</h3>
                 <p className="text-gray-600">(555) 123-4567</p>
               </div>
-              <div className="p-4 bg-gray-50 rounded-lg">
+              <div className="p-4 bg-gray-50">
                 <h3 className="font-medium text-gray-900 mb-2">Email</h3>
                 <p className="text-gray-600">info@jkcabinets.com</p>
               </div>
@@ -69,7 +69,7 @@ export default function Contact() {
                 name="name"
                 value={formData.name}
                 onChange={handleChange}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand focus:border-transparent"
+                className="w-full px-4 py-2 border border-gray-300 focus:ring-2 focus:ring-brand focus:border-transparent"
                 required
               />
             </div>
@@ -84,7 +84,7 @@ export default function Contact() {
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand focus:border-transparent"
+                className="w-full px-4 py-2 border border-gray-300 focus:ring-2 focus:ring-brand focus:border-transparent"
                 required
               />
             </div>
@@ -99,7 +99,7 @@ export default function Contact() {
                 name="phone"
                 value={formData.phone}
                 onChange={handleChange}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand focus:border-transparent"
+                className="w-full px-4 py-2 border border-gray-300 focus:ring-2 focus:ring-brand focus:border-transparent"
               />
             </div>
 
@@ -113,14 +113,14 @@ export default function Contact() {
                 value={formData.message}
                 onChange={handleChange}
                 rows={4}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand focus:border-transparent"
+                className="w-full px-4 py-2 border border-gray-300 focus:ring-2 focus:ring-brand focus:border-transparent"
                 required
               />
             </div>
 
             <button
               type="submit"
-              className="w-full bg-brand text-white py-3 px-6 rounded-lg hover:bg-brand-800 transition-colors duration-200"
+              className="w-full bg-brand text-white py-3 px-6 hover:bg-brand-800 transition-colors duration-200"
             >
               Send Message
             </button>

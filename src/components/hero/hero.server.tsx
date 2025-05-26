@@ -20,14 +20,14 @@ const Hero = () => {
           alt="Left Placeholder"
           width={800}
           height={350}
-          className="w-full h-48 sm:h-[350px] object-cover rounded-xl shadow-md"
+          className="w-full h-48 sm:h-[350px] object-cover shadow-md"
         />
         <Image
           src="https://cdn.prod.website-files.com/658e0f2023ee3a398167cfff/68234922ec58a0c15390377e_E1%20Dove%20%26%20H8%20Hazel%201-p-2000.jpg"
           alt="Right Placeholder"
           width={800}
           height={350}
-          className="w-full h-48 sm:h-[350px] object-cover rounded-xl shadow-md"
+          className="w-full h-48 sm:h-[350px] object-cover shadow-md"
         />
       </div>
     </section>

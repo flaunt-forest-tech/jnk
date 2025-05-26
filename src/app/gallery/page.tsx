@@ -10,7 +10,7 @@ export default function Gallery() {
           {[1, 2, 3, 4, 5, 6].map((item) => (
             <div
               key={item}
-              className="aspect-square bg-gray-100 rounded-xl overflow-hidden"
+              className="aspect-square bg-gray-100 overflow-hidden"
             >
               <div className="w-full h-full flex items-center justify-center text-gray-400">
                 Image {item}
