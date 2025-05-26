@@ -3,16 +3,15 @@
 import { useState } from "react";
 import { productTypes } from "../../../assets/mock-products-data";
 
-const placeholderImg =
-  "https://via.placeholder.com/300x200.png?text=Product+Image";
+const productImage = "https://cdn.prod.website-files.com/658e0f2123ee3a398167d04f/67feb3ac5c609454b94e8066_E1.avif";
 
 export default function Products() {
   const [selectedTypeIdx, setSelectedTypeIdx] = useState(0);
   const selectedType = productTypes[selectedTypeIdx];
 
   return (
-    <div className="flex flex-col min-h-screen py-12 ">
-      <div className="max-w-7xl w-full ">
+    <div className="flex flex-col min-h-screen py-12">
+      <div className="max-w-7xl w-full">
         {/* Page Title */}
         <h1 className="text-4xl font-bold text-gray-900 mb-8">Our Products</h1>
         
@@ -48,7 +47,7 @@ export default function Products() {
               {/* Product Image */}
               <div className="aspect-[4/3] overflow-hidden bg-gray-100">
                 <img
-                  src={placeholderImg}
+                  src={productImage}
                   alt={product.name}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
