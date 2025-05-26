@@ -16,7 +16,7 @@ const MenuLink = ({ href, children, isActive }: MenuLinkProps) => {
 
   if (isActive || isCurrentPage) {
     return (
-      <span className="text-sm font-medium text-brand">
+      <span className="text-sm font-semibold text-brand relative after:content-[''] after:absolute after:bottom-[-4px] after:left-0 after:w-full after:h-0.5 after:bg-brand">
         {children}
       </span>
     );
@@ -25,7 +25,7 @@ const MenuLink = ({ href, children, isActive }: MenuLinkProps) => {
   return (
     <Link 
       href={href} 
-      className="text-sm font-medium text-gray-700 hover:text-brand transition-colors duration-200"
+      className="text-sm font-medium text-gray-700 hover:text-brand transition-colors duration-200 relative after:content-[''] after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-0.5 after:bg-brand hover:after:w-full after:transition-all after:duration-200"
     >
       {children}
     </Link>

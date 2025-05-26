@@ -10,6 +10,15 @@ const NavBar = () => {
         <MenuLink href="/products">
           Products
         </MenuLink>
+        <MenuLink href="/gallery">
+          Gallery
+        </MenuLink>
+        <MenuLink href="/about">
+          About
+        </MenuLink>
+        <MenuLink href="/contact">
+          Contact
+        </MenuLink>
       </div>
     </nav>
   );
