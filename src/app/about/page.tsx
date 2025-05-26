@@ -11,7 +11,7 @@ export default function About() {
           <div className="space-y-6">
             <h2 className="text-2xl font-semibold text-gray-900">Our Story</h2>
             <p className="text-gray-600">
-              J&K Cabinets is a premier custom cabinet manufacturer dedicated to creating beautiful, 
+              J&K Cabinetry is a premier custom cabinet manufacturer dedicated to creating beautiful, 
               high-quality cabinetry for your home or business. With years of experience and a 
               commitment to excellence, we bring your vision to life.
             </p>

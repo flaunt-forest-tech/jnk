@@ -10,14 +10,13 @@ const Logo = () => {
     <div className="flex items-center cursor-pointer" onClick={() => router.push('/')}>
       <Image
         src="/assets/logo-main.png"
-        alt="J&K Cabinets Logo"
+        alt="J&K Cabinetry Logo"
         width={120}
         height={32}
         className="h-8 w-auto"
         priority
       />
-            <span className="text-2xl font-bold text-primary-900">J&K</span>
-            <span className="text-xl text-primary-700 ml-1">Cabinets</span>
+            <span className="text-2xl font-bold text-brand">J&K Cabinetry</span>
     </div>
   );
 };
