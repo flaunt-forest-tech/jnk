@@ -16,9 +16,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'J&K Cabinets',
-  description: 'J&K Cabinets - Custom Cabinet Solutions',
-
+  title: 'J&K Cabinetry',
+  description: 'J&K Cabinetry - Custom Cabinet Solutions',
 };
 
 export default function RootLayout({
@@ -62,7 +61,7 @@ export default function RootLayout({
           >
             <div className="flex flex-col md:flex-row justify-between items-center">
               <div className="text-sm text-gray-600">
-                © {new Date().getFullYear()} J&K Cabinets. All rights reserved.
+                © {new Date().getFullYear()} J&K Cabinetry. All rights reserved.
               </div>
               <div className="mt-4 md:mt-0 flex space-x-6">
                 <Link href="/privacy" className="text-sm text-gray-600 hover:text-gray-900">
