@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from "react";
-import { productTypes } from "../../../assets/mock-products-data";
+import { productTypes } from "../../../mock-products-data";
 
 const productImage = "https://cdn.prod.website-files.com/658e0f2123ee3a398167d04f/67feb3ac5c609454b94e8066_E1.avif";
 
