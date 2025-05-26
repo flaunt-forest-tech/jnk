@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 
 const Hero = () => {
   return (
@@ -14,14 +15,18 @@ const Hero = () => {
       </h1>
       {/* Image Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
-        <img
+        <Image
           src="https://cdn.prod.website-files.com/658e0f2023ee3a398167cfff/6824d23c556bfbf33672f8e4_K3-B-3.avif"
           alt="Left Placeholder"
+          width={800}
+          height={350}
           className="w-full h-48 sm:h-[350px] object-cover rounded-xl shadow-md"
         />
-        <img
+        <Image
           src="https://cdn.prod.website-files.com/658e0f2023ee3a398167cfff/68234922ec58a0c15390377e_E1%20Dove%20%26%20H8%20Hazel%201-p-2000.jpg"
           alt="Right Placeholder"
+          width={800}
+          height={350}
           className="w-full h-48 sm:h-[350px] object-cover rounded-xl shadow-md"
         />
       </div>

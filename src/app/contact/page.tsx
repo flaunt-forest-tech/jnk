@@ -36,8 +36,8 @@ export default function Contact() {
             <div>
               <h2 className="text-2xl font-semibold text-gray-900 mb-4">Get in Touch</h2>
               <p className="text-gray-600">
-                Have questions about our products or services? We're here to help. 
-                Fill out the form and we'll get back to you as soon as possible.
+                Have questions about our products or services? We&apos;re here to help. 
+                Fill out the form and we&apos;ll get back to you as soon as possible.
               </p>
             </div>
 
