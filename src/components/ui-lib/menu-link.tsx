@@ -8,9 +8,10 @@ interface MenuLinkProps {
   href: string;
   children: React.ReactNode;
   isActive?: boolean;
+  onClick?: () => void;
 }
 
-const MenuLink = ({ href, children, isActive }: MenuLinkProps) => {
+const MenuLink = ({ href, children, isActive, onClick }: MenuLinkProps) => {
   const pathname = usePathname();
   const isCurrentPage = pathname === href;
 
@@ -25,6 +26,7 @@ const MenuLink = ({ href, children, isActive }: MenuLinkProps) => {
   return (
     <Link 
       href={href} 
+      onClick={onClick}
       className="text-sm font-medium text-gray-700 hover:text-brand transition-colors duration-200 relative after:content-[''] after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-0.5 after:bg-brand hover:after:w-full after:transition-all after:duration-200"
     >
       {children}
