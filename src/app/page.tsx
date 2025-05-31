@@ -1,3 +1,4 @@
+import BestSellingDoorStyle from '@/components/door-styles/best-selling';
 import Hero from '@/components/hero/hero.server';
 
 export default function Home() {
@@ -16,7 +17,8 @@ export default function Home() {
          Pebble (B6)
          Pure (B5)*/}
       <section className="py-12">
-        Most Loved Styles
+        {/* View our best-selling styles */}
+        <BestSellingDoorStyle />
       </section>
 
       {/* Explore More Styles Section - Placeholder reference: https://c21b33-75.myshopify.com/*/}
