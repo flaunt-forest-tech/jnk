@@ -1,4 +1,4 @@
-export interface DoorStyle {
+export interface CabinetStyleType {
   name: string;
   code: string;
   fileName: string;
@@ -6,7 +6,7 @@ export interface DoorStyle {
   order: number;
 }
 
-export const DOOR_STYLES: DoorStyle[] = [
+export const CABINET_STYLES: CabinetStyleType[] = [
   { name: 'White Shaker', code: 'S8', fileName: 'S8-WhiteShaker.png', bestSelling: true, order: 1 },
   { name: 'Dove', code: 'E1', fileName: 'E1-Dove.png', bestSelling: true, order: 2 },
   { name: 'Charcoal', code: 'E2', fileName: 'E2-Charcoal.png', bestSelling: true, order: 3 },
