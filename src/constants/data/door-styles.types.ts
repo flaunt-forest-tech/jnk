@@ -9,10 +9,10 @@ export interface DoorStyle {
 export const DOOR_STYLES: DoorStyle[] = [
   { name: 'White Shaker', code: 'S8', fileName: 'S8-WhiteShaker.png', bestSelling: true, order: 1 },
   { name: 'Dove', code: 'E1', fileName: 'E1-Dove.png', bestSelling: true, order: 2 },
-  // { name: 'Charcoal', code: "E2", fileName: 'E2-Charcoal.png', bestSelling: true, order: 3 },
-  // { name: 'Sage', code: "E3", fileName: 'E3-Sage.png', bestSelling: true, order: 4 },
-  // { name: 'Pebble', code: "B6", fileName: 'B6-Pebble.png', bestSelling: true, order: 5 },
-  // { name: 'Pure', code: "B5", fileName: 'B5-Pure.png', bestSelling: true, order: 6 },
+  { name: 'Charcoal', code: 'E2', fileName: 'E2-Charcoal.png', bestSelling: true, order: 3 },
+  { name: 'Sage', code: 'E3', fileName: 'E3-Sage.png', bestSelling: true, order: 4 },
+  { name: 'Pebble', code: 'B6', fileName: 'B6-Pebble.png', bestSelling: true, order: 5 },
+  { name: 'Pure', code: 'B5', fileName: 'B5-Pure.png', bestSelling: true, order: 6 },
 
   // { name: 'Naval', code: "S7", fileName: 'S7-Naval.png', order: 7 },
   // { name: 'Butterscotch', code: "B8", fileName: 'B8-Butterscotch.png', order: 8 },
