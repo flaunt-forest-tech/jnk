@@ -2,7 +2,7 @@ import React from 'react';
 import StyleThumbnail from './style-thumbnail';
 import { CABINET_STYLES } from '@/constants/data/door-styles.types';
 
-const BestSellingDoorStyle: React.FC = () => {
+const BestSellingCabinetStyle: React.FC = () => {
   return (
     <div>
       <h2 className="font-bold  text-5xl text-black-900 text-center">Best Selling Styles</h2>
@@ -15,4 +15,4 @@ const BestSellingDoorStyle: React.FC = () => {
   );
 };
 
-export default BestSellingDoorStyle;
+export default BestSellingCabinetStyle;
