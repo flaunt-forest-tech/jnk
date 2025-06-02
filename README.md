@@ -17,10 +17,16 @@ bun dev
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 ## Ecommerce Website
+
 https://c21b33-75.myshopify.com/
 
 ## Design Template
+
 https://fft-3707c3.design.webflow.com
 Login using google account: flauntforesttech@gmail.com
 Figma file: https://drive.google.com/drive/folders/1oEIOGs4sJWY-6QOGJOETB1rlauzqbjY7
 
+## Dev Server
+
+Upon successful merge of the PR into the `main` branch, the build is deployed to the following development server:
+https://jnk-ashen.vercel.app/
