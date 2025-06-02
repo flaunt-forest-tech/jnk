@@ -1,4 +1,5 @@
-import BestSellingDoorStyle from '@/components/door-styles/best-selling';
+import BestSellingCabinetStyle from '@/components/cabinet-styles/best-selling';
+import OtherCabinetStyle from '@/components/cabinet-styles/other-styles';
 import Hero from '@/components/hero/hero.server';
 
 export default function Home() {
@@ -9,16 +10,8 @@ export default function Home() {
         <Hero />
       </section>
 
-      {/* Most Loved Styles Section - Placeholder  reference: https://c21b33-75.myshopify.com/*/}
-      {/*White Shaker (S8) 
-         Dove (E1)
-         Charcoal (E2)
-         Sage (E3)
-         Pebble (B6)
-         Pure (B5)*/}
       <section className="py-12">
-        {/* View our best-selling styles */}
-        <BestSellingDoorStyle />
+        <BestSellingCabinetStyle />
       </section>
 
       {/* Explore More Styles Section - Placeholder reference: https://c21b33-75.myshopify.com/*/}
@@ -35,7 +28,7 @@ export default function Home() {
          Mahogany (J5)
          Chocolate Glazed (M01)*/}
       <section className="py-12">
-        Explore More Styles
+        <OtherCabinetStyle />
       </section>
     </div>
   );
