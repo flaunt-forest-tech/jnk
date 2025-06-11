@@ -1,0 +1,7 @@
+{
+  "servers": {
+    "my-mcp-server-d30a41d6": {
+      "url": "https://jnk-ashen.vercel.app/mcp"
+    }
+  }
+}
