@@ -29,7 +29,7 @@ export const productTypes: ProductType[] = [
         name: 'Base Cabinet',
         description: '1 drawer and 1 door',
         features: ['1 Drawer', '1 Door', '1 Adjustable Shelf'],
-        image: 'BaseCabinets/1drawer1door.png',
+        image: 'BaseCabinets/1-1.jpg',
         variants: [
           {
             code: 'B09',
@@ -80,7 +80,7 @@ export const productTypes: ProductType[] = [
         name: 'Base Cabinet',
         description: '1 drawer and 2 doors',
         features: ['1 Drawer', '1 Door', '1 Adjustable Shelf'],
-        image: 'BaseCabinets/1drawer2doors.png',
+        image: 'BaseCabinets/1-2.jpg',
         variants: [
           {
             code: 'B24',
@@ -122,7 +122,7 @@ export const productTypes: ProductType[] = [
         name: 'Wall Cabinet',
         description: '12"H & 15"H',
         features: ['2 Doors', 'No Shelf'],
-        image: 'WallCabinets/12H&15H.png',
+        image: 'WallCabinets/2-5.jpg',
         variants: [
           {
             code: 'W2412',
