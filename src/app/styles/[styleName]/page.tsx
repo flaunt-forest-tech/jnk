@@ -2,7 +2,7 @@
 import React from 'react';
 import { useState } from 'react';
 import Image from 'next/image';
-import { productTypes } from '../../../../mock-products-data';
+import { productTypes } from '../../../constants/data/mock-products-data';
 
 interface StylePageParams {
   styleName: string;
@@ -11,18 +11,18 @@ interface StylePageParams {
 interface StylePageProps {
   params: Promise<StylePageParams>;
 }
-const productImage =
-  'https://cdn.prod.website-files.com/658e0f2123ee3a398167d04f/67feb3ac5c609454b94e8066_E1.avif';
+// const productImage =
+//   'https://cdn.prod.website-files.com/658e0f2123ee3a398167d04f/67feb3ac5c609454b94e8066_E1.avif';
 
 const StylePage: React.FC<StylePageProps> = ({ params }) => {
   const { styleName } = React.use(params); // "White Shaker"
   const [selectedTypeIdx, setSelectedTypeIdx] = useState(0);
 
-  const filteredProducts = productTypes.filter((product) =>
+  const filteredProductTypes = productTypes.filter((product) =>
     product.products.some((product) => product.availableStyles.includes(styleName))
   );
 
-  if (filteredProducts.length === 0) {
+  if (filteredProductTypes.length === 0) {
     return (
       <div className="flex items-center justify-center min-h-screen">
         <h2 className="text-2xl font-semibold text-gray-700">
@@ -32,7 +32,7 @@ const StylePage: React.FC<StylePageProps> = ({ params }) => {
     );
   }
 
-  const selectedType = filteredProducts[selectedTypeIdx];
+  const selectedType = filteredProductTypes[selectedTypeIdx];
 
   return (
     <div className="flex flex-col min-h-screen py-12">
@@ -42,7 +42,7 @@ const StylePage: React.FC<StylePageProps> = ({ params }) => {
 
         {/* Product Type Tabs */}
         <div className="flex flex-wrap gap-2 mb-12">
-          {filteredProducts.map((type, idx) => (
+          {filteredProductTypes.map((type, idx) => (
             <button
               key={type.name}
               className={`px-6 py-3 text-sm font-medium transition-all duration-200 ${
@@ -64,14 +64,14 @@ const StylePage: React.FC<StylePageProps> = ({ params }) => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
           {selectedType.products.map((product) => (
             <div
-              key={product.name}
+              key={product.description}
               className="group relative bg-white border border-gray-200 shadow-sm overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
             >
               {/* Product Image */}
-              <div className="aspect-[4/3] overflow-hidden bg-gray-100">
+              <div className="overflow-hidden bg-gray-100">
                 <Image
-                  src={productImage}
-                  alt={product.name}
+                  src={`/assets/${product.image}`}
+                  alt={product.description}
                   width={400}
                   height={300}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
@@ -87,12 +87,25 @@ const StylePage: React.FC<StylePageProps> = ({ params }) => {
               {/* Hover Overlay */}
               <div className="absolute inset-0 bg-gradient-to-b from-brand/95 to-brand-800/95 opacity-0 group-hover:opacity-100 transition-all duration-300 ease-in-out">
                 <div className="absolute inset-0 flex flex-col p-6 text-white overflow-y-auto">
-                  <div className="flex-none">
+                  {/* <div className="flex-none">
                     <h3 className="text-xl font-bold mb-2">{product.name}</h3>
                     <p className="text-sm mb-4 text-gray-100">{product.description}</p>
-                  </div>
+                  </div> */}
 
-                  <div className="flex-grow space-y-4">
+                  {product.features && (
+                    <div>
+                      <p className="text-sm font-medium mb-2 text-brand-50">Features:</p>
+                      <div className="flex flex-wrap gap-2">
+                        {product.features.map((style) => (
+                          <span key={style} className="text-xs bg-white/10 px-2 py-1">
+                            {style}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  <div className="flex-grow space-y-4 mt-4">
                     <div>
                       <p className="text-sm font-medium mb-2 text-brand-50">Available Variants:</p>
                       <ul className="text-xs space-y-2">
@@ -103,23 +116,11 @@ const StylePage: React.FC<StylePageProps> = ({ params }) => {
                           >
                             <span className="font-medium text-brand-50">{variant.code}</span>
                             <span className="text-gray-200">{variant.dimensions}</span>
+                            <span className="text-gray-200">{variant.weight} LB</span>
                           </li>
                         ))}
                       </ul>
                     </div>
-
-                    {product.availableStyles && (
-                      <div>
-                        <p className="text-sm font-medium mb-2 text-brand-50">Available Styles:</p>
-                        <div className="flex flex-wrap gap-2">
-                          {product.availableStyles.map((style) => (
-                            <span key={style} className="text-xs bg-white/10 px-2 py-1">
-                              {style}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-                    )}
                   </div>
                 </div>
               </div>
