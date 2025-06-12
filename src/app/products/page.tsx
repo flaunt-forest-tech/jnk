@@ -1,10 +1,11 @@
 'use client';
 
-import { useState } from "react";
-import Image from "next/image";
-import { productTypes } from "../../../mock-products-data";
+import { useState } from 'react';
+import Image from 'next/image';
+import { productTypes } from '../../constants/data/mock-products-data';
 
-const productImage = "https://cdn.prod.website-files.com/658e0f2123ee3a398167d04f/67feb3ac5c609454b94e8066_E1.avif";
+const productImage =
+  'https://cdn.prod.website-files.com/658e0f2123ee3a398167d04f/67feb3ac5c609454b94e8066_E1.avif';
 
 export default function Products() {
   const [selectedTypeIdx, setSelectedTypeIdx] = useState(0);
@@ -15,7 +16,7 @@ export default function Products() {
       <div className="max-w-7xl w-full">
         {/* Page Title */}
         <h1 className="text-4xl font-bold text-gray-900 mb-8">Our Products</h1>
-        
+
         {/* Product Type Tabs */}
         <div className="flex flex-wrap gap-2 mb-12">
           {productTypes.map((type, idx) => (
@@ -23,8 +24,8 @@ export default function Products() {
               key={type.name}
               className={`px-6 py-3 text-sm font-medium transition-all duration-200 ${
                 idx === selectedTypeIdx
-                  ? "bg-brand text-white shadow-md"
-                  : "bg-white text-gray-700 hover:bg-gray-50 border border-gray-200"
+                  ? 'bg-brand text-white shadow-md'
+                  : 'bg-white text-gray-700 hover:bg-gray-50 border border-gray-200'
               }`}
               onClick={() => setSelectedTypeIdx(idx)}
             >
@@ -34,9 +35,7 @@ export default function Products() {
         </div>
 
         {/* Selected Type Description */}
-        <p className="text-gray-600 mb-8 max-w-3xl">
-          {selectedType.description}
-        </p>
+        <p className="text-gray-600 mb-8 max-w-3xl">{selectedType.description}</p>
 
         {/* Products Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
@@ -55,15 +54,11 @@ export default function Products() {
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
               </div>
-              
+
               {/* Product Info */}
               <div className="p-4">
-                <h3 className="text-lg font-semibold text-gray-900 mb-1">
-                  {product.name}
-                </h3>
-                <p className="text-sm text-gray-600 line-clamp-2">
-                  {product.description}
-                </p>
+                <h3 className="text-lg font-semibold text-gray-900 mb-1">{product.name}</h3>
+                <p className="text-sm text-gray-600 line-clamp-2">{product.description}</p>
               </div>
 
               {/* Hover Overlay */}
@@ -73,20 +68,23 @@ export default function Products() {
                     <h3 className="text-xl font-bold mb-2">{product.name}</h3>
                     <p className="text-sm mb-4 text-gray-100">{product.description}</p>
                   </div>
-                  
+
                   <div className="flex-grow space-y-4">
                     <div>
                       <p className="text-sm font-medium mb-2 text-brand-50">Available Variants:</p>
                       <ul className="text-xs space-y-2">
                         {product.variants.map((variant) => (
-                          <li key={variant.code} className="flex justify-between items-center bg-white/10 p-2">
+                          <li
+                            key={variant.code}
+                            className="flex justify-between items-center bg-white/10 p-2"
+                          >
                             <span className="font-medium text-brand-50">{variant.code}</span>
                             <span className="text-gray-200">{variant.dimensions}</span>
                           </li>
                         ))}
                       </ul>
                     </div>
-                    
+
                     {product.availableStyles && (
                       <div>
                         <p className="text-sm font-medium mb-2 text-brand-50">Available Styles:</p>
