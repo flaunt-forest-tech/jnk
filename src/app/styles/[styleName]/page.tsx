@@ -2,7 +2,7 @@
 import React from 'react';
 import { useState } from 'react';
 import Image from 'next/image';
-import { productTypes } from '../../../constants/data/mock-products-data';
+import { productTypes } from '../../../constants/data/products-data';
 
 interface StylePageParams {
   styleName: string;
