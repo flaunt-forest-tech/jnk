@@ -13,7 +13,6 @@ export const CABINET_STYLES: CabinetStyleType[] = [
     displayName: 'White Shaker',
     code: 'S8',
     fileName: 'WHITE SHAKER - S8.webp',
-    bestSelling: true,
     order: 1,
   },
   {
@@ -21,7 +20,6 @@ export const CABINET_STYLES: CabinetStyleType[] = [
     displayName: 'Dove',
     code: 'E1',
     fileName: 'DOVE - E1.webp',
-    bestSelling: true,
     order: 2,
   },
   {
@@ -29,7 +27,6 @@ export const CABINET_STYLES: CabinetStyleType[] = [
     displayName: 'Charcoal',
     code: 'E2',
     fileName: 'CHARCOAL - E2.webp',
-    bestSelling: true,
     order: 3,
   },
   {
@@ -37,7 +34,6 @@ export const CABINET_STYLES: CabinetStyleType[] = [
     displayName: 'Sage',
     code: 'E3',
     fileName: 'SAGE - E3.webp',
-    bestSelling: true,
     order: 4,
   },
   {
@@ -45,7 +41,6 @@ export const CABINET_STYLES: CabinetStyleType[] = [
     displayName: 'Pebble',
     code: 'B6',
     fileName: 'PEBBLE - B6.webp',
-    bestSelling: true,
     order: 5,
   },
   {
@@ -53,7 +48,6 @@ export const CABINET_STYLES: CabinetStyleType[] = [
     displayName: 'Pure',
     code: 'B5',
     fileName: 'PURE - B5.webp',
-    bestSelling: true,
     order: 6,
   },
 
