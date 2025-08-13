@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import StyleThumbnail from './style-thumbnail';
 import { CABINET_STYLES } from '@/constants/data/door-styles.types';
+import { CircleChevronLeft, CircleChevronRight } from 'lucide-react';
 
 const VISIBLE_COUNT = 6;
 
@@ -27,25 +28,13 @@ const OtherCabinetStyle: React.FC = () => {
     <div className="text-center">
       <h2 className="font-bold text-5xl text-black-900 mb-6">Cabinet styles</h2>
       <div className="flex items-center justify-center gap-4">
-        <button
-          onClick={handlePrev}
-          className="px-4 py-2 bg-gray-200 text-black rounded hover:bg-gray-300"
-        >
-          &larr;
-        </button>
-
+        <CircleChevronLeft onClick={handlePrev} />
         <div className="flex gap-4 flex-wrap justify-center">
           {visibleStyles.map((style) => (
             <StyleThumbnail key={style.name} cabinetStyle={style} />
           ))}
         </div>
-
-        <button
-          onClick={handleNext}
-          className="px-4 py-2 bg-gray-200 text-black rounded hover:bg-gray-300"
-        >
-          &rarr;
-        </button>
+        <CircleChevronRight onClick={handleNext} />
       </div>
     </div>
   );
