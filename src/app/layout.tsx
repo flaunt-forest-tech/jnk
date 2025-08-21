@@ -30,8 +30,8 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col`}
       >
-        <header className="bg-white border-b">
-          <div 
+        <header className="sticky top-0 z-50 bg-white/90 border-b backdrop-blur">
+          <div
             className="mx-auto w-full px-6 lg:px-8"
             style={{
               maxWidth: LAYOUT.container.maxWidth,
@@ -42,7 +42,7 @@ export default function RootLayout({
         </header>
 
         <main className="flex-grow">
-          <div 
+          <div
             className="mx-auto w-full px-6 lg:px-8"
             style={{
               maxWidth: LAYOUT.container.maxWidth,
@@ -53,7 +53,7 @@ export default function RootLayout({
         </main>
 
         <footer className="bg-gray-50 border-t">
-          <div 
+          <div
             className="mx-auto w-full px-6 lg:px-8 py-10"
             style={{
               maxWidth: LAYOUT.container.maxWidth,
