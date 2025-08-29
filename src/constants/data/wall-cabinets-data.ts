@@ -3,7 +3,7 @@ import { ProductType } from './products-data';
 export const wallCabinets: ProductType[] = [
   {
     name: 'Wall Cabinets',
-    description: 'Floor-standing cabinets that provide the foundation for your kitchen',
+    description: 'Wall-mounted cabinets that provide additional storage above countertops',
     products: [
       {
         name: 'Wall Cabinet',
@@ -17,50 +17,24 @@ export const wallCabinets: ProductType[] = [
             weight: 18,
           },
           {
-            code: 'W2712',
-            dimensions: '27W x 12H x 12D',
-            weight: 19,
-          },
-          {
             code: 'W3012',
             dimensions: '30W x 12H x 12D',
             weight: 20,
-          },
-          {
-            code: 'W3312',
-            dimensions: '33W x 12H x 12D',
-            weight: 22,
           },
           {
             code: 'W3612',
             dimensions: '36W x 12H x 12D',
             weight: 23,
           },
-          {
-            code: 'W3912',
-            dimensions: '36W x 12H x 12D',
-            weight: 24,
-          },
         ],
-        availableStyles: [
-          'WhiteShaker',
-          'Dove',
-          'Charcoal',
-          'Sage',
-          'Pebble',
-          'Pure',
-          'Naval',
-          'ButterScotch',
-          'JavaCoffee',
-          'CastleGrey',
-          'Greige',
-          'Espresso',
-          'MochaGlazed',
-          'Hazel',
-          'CremeGlazed',
-          'Mahogany',
-        ],
+        availableStyles: ['WhiteShaker', 'Dove', 'Charcoal', 'Sage', 'Pebble', 'Pure'],
       },
     ],
   },
 ];
+
+// TODO: Add more variants and styles in the future
+// Removed for future implementation:
+// - Additional variants: W2712, W3312, W3912
+// - Additional styles: Naval, ButterScotch, JavaCoffee, CastleGrey, Greige,
+//   Espresso, MochaGlazed, Hazel, PearlGlazed, CremeGlazed, Mahogany
