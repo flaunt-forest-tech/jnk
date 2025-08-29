@@ -1,133 +1,155 @@
 'use client';
-import React from 'react';
-import { useState } from 'react';
+
 import Image from 'next/image';
-import { productTypes } from '../../../constants/data/products-data';
+import { useParams } from 'next/navigation';
+import React, { useState } from 'react';
 
-interface StylePageParams {
-  styleName: string;
-}
+const placeholderImages = [
+  '/assets/BaseCabinets/1-1.jpg',
+  '/assets/BaseCabinets/1-2.jpg',
+  '/assets/BaseCabinets/1-3.jpg',
+  '/assets/BaseCabinets/1-4.jpg',
+];
 
-interface StylePageProps {
-  params: Promise<StylePageParams>;
-}
+export default function StylePage() {
+  const params = useParams();
+  const styleName =
+    typeof params?.styleName === 'string'
+      ? decodeURIComponent(params.styleName)
+      : 'Kitchen Collection';
 
-const StylePage: React.FC<StylePageProps> = ({ params }) => {
-  const { styleName } = React.use(params); // "White Shaker"
-  const [selectedTypeIdx, setSelectedTypeIdx] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
-  const filteredProductTypes = productTypes.filter((product) =>
-    product.products.some((product) => product.availableStyles.includes(styleName))
-  );
+  const goTo = (index: number) => {
+    const imagesCount = placeholderImages.length;
+    const normalizedIndex = ((index % imagesCount) + imagesCount) % imagesCount;
+    setCurrentIndex(normalizedIndex);
+  };
 
-  if (filteredProductTypes.length === 0) {
-    return (
-      <div className="flex items-center justify-center min-h-screen">
-        <h2 className="text-2xl font-semibold text-gray-700">
-          No products available for this style.
-        </h2>
-      </div>
-    );
-  }
-
-  const selectedType = filteredProductTypes[selectedTypeIdx];
+  const goPrev = () => goTo(currentIndex - 1);
+  const goNext = () => goTo(currentIndex + 1);
 
   return (
-    <div className="flex flex-col min-h-screen py-12">
-      <div className="max-w-7xl w-full">
-        {/* Page Title */}
-        <h1 className="text-4xl font-bold text-gray-900 mb-8">Our Products</h1>
+    <section className="py-10">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
+        {/* Left: Image Carousel */}
+        <div className="flex gap-4">
+          {/* Thumbnails */}
+          <div className="hidden sm:flex flex-col gap-3 w-20">
+            {placeholderImages.map((src, idx) => (
+              <button
+                key={src}
+                onClick={() => goTo(idx)}
+                aria-label={`Go to image ${idx + 1}`}
+                className={`relative aspect-[3/4] overflow-hidden border ${
+                  idx === currentIndex ? 'border-brand' : 'border-gray-200'
+                }`}
+              >
+                <Image
+                  src={src}
+                  alt={`Preview ${idx + 1}`}
+                  fill
+                  sizes="80px"
+                  className="object-cover"
+                />
+              </button>
+            ))}
+          </div>
 
-        {/* Product Type Tabs */}
-        <div className="flex flex-wrap gap-2 mb-12">
-          {filteredProductTypes.map((type, idx) => (
+          {/* Main Image */}
+          <div className="relative flex-1">
+            <div className="relative w-full aspect-[4/3] bg-gray-100 overflow-hidden">
+              <Image
+                src={placeholderImages[currentIndex]}
+                alt={`Image ${currentIndex + 1}`}
+                fill
+                priority
+                sizes="(min-width: 1024px) 640px, 100vw"
+                className="object-cover"
+              />
+            </div>
+
+            {/* Controls */}
             <button
-              key={type.name}
-              className={`px-6 py-3 text-sm font-medium transition-all duration-200 ${
-                idx === selectedTypeIdx
-                  ? 'bg-brand text-white shadow-md'
-                  : 'bg-white text-gray-700 hover:bg-gray-50 border border-gray-200'
-              }`}
-              onClick={() => setSelectedTypeIdx(idx)}
+              onClick={goPrev}
+              aria-label="Previous image"
+              className="absolute left-2 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white rounded-full h-9 w-9 grid place-items-center text-gray-800 shadow"
             >
-              {type.name}
+              ‹
             </button>
-          ))}
+            <button
+              onClick={goNext}
+              aria-label="Next image"
+              className="absolute right-2 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white rounded-full h-9 w-9 grid place-items-center text-gray-800 shadow"
+            >
+              ›
+            </button>
+
+            {/* Dots */}
+            <div className="mt-3 flex items-center justify-center gap-2">
+              {placeholderImages.map((_, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => goTo(idx)}
+                  aria-label={`Go to slide ${idx + 1}`}
+                  className={`h-2.5 w-2.5 rounded-full ${
+                    idx === currentIndex ? 'bg-brand' : 'bg-gray-300'
+                  }`}
+                />
+              ))}
+            </div>
+          </div>
         </div>
 
-        {/* Selected Type Description */}
-        <p className="text-gray-600 mb-8 max-w-3xl">{selectedType.description}</p>
-
-        {/* Products Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-          {selectedType.products.map((product) => (
-            <div
-              key={product.description}
-              className="group relative bg-white border border-gray-200 shadow-sm overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
-            >
-              {/* Product Image */}
-              <div className="overflow-hidden bg-gray-100">
-                <Image
-                  src={`/assets/${product.image}`}
-                  alt={product.description}
-                  width={400}
-                  height={300}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                />
-              </div>
-
-              {/* Product Info */}
-              <div className="p-4">
-                <h3 className="text-lg font-semibold text-gray-900 mb-1">{product.name}</h3>
-                <p className="text-sm text-gray-600 line-clamp-2">{product.description}</p>
-              </div>
-
-              {/* Hover Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-b from-brand/95 to-brand-800/95 opacity-0 group-hover:opacity-100 transition-all duration-300 ease-in-out">
-                <div className="absolute inset-0 flex flex-col p-6 text-white overflow-y-auto">
-                  {/* <div className="flex-none">
-                    <h3 className="text-xl font-bold mb-2">{product.name}</h3>
-                    <p className="text-sm mb-4 text-gray-100">{product.description}</p>
-                  </div> */}
-
-                  {product.features && (
-                    <div>
-                      <p className="text-sm font-medium mb-2 text-brand-50">Features:</p>
-                      <div className="flex flex-wrap gap-2">
-                        {product.features.map((style) => (
-                          <span key={style} className="text-xs bg-white/10 px-2 py-1">
-                            {style}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-
-                  <div className="flex-grow space-y-4 mt-4">
-                    <div>
-                      <p className="text-sm font-medium mb-2 text-brand-50">Available Variants:</p>
-                      <ul className="text-xs space-y-2">
-                        {product.variants.map((variant) => (
-                          <li
-                            key={variant.code}
-                            className="flex justify-between items-center bg-white/10 p-2"
-                          >
-                            <span className="font-medium text-brand-50">{variant.code}</span>
-                            <span className="text-gray-200">{variant.dimensions}</span>
-                            <span className="text-gray-200">{variant.weight} LB</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
+        {/* Right: Description */}
+        <div className="space-y-6">
+          <div>
+            <h1 className="text-5xl font-bold text-gray-900">Washington</h1>
+            <div className="mt-2 flex flex-wrap items-center gap-2 text-lg text-gray-700">
+              <span>Shaker</span>
+              <span className="text-gray-400">|</span>
+              <span>RTF</span>
+              <span className="text-gray-400">|</span>
+              <span className="capitalize">{styleName}</span>
             </div>
-          ))}
+            <p className="mt-5 text-gray-700 max-w-prose">
+              Washington from Home Decorators Collection is a classic shaker door style with a
+              matching drawer front. Featuring functionality and versatility this collection can be
+              used in any design throughout the home.
+            </p>
+          </div>
+
+          <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-gray-800">
+            <li className="flex items-center gap-3">
+              <span aria-hidden="true" className="h-2 w-2 rounded-full bg-brand" />
+              <span>All Plywood Cabinet Construction</span>
+            </li>
+            <li className="flex items-center gap-3">
+              <span aria-hidden="true" className="h-2 w-2 rounded-full bg-brand" />
+              <span>Solid Hardwood Dovetail Drawers</span>
+            </li>
+            <li className="flex items-center gap-3">
+              <span aria-hidden="true" className="h-2 w-2 rounded-full bg-brand" />
+              <span>CARB II compliant</span>
+            </li>
+            <li className="flex items-center gap-3">
+              <span aria-hidden="true" className="h-2 w-2 rounded-full bg-brand" />
+              <span>Ships in 7–10 Business Days</span>
+            </li>
+          </ul>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <button className="w-full bg-brand hover:bg-brand-700 text-white py-4 text-lg font-semibold rounded-lg transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-400 focus-visible:ring-offset-2">
+              Shop RTA Cabinets
+              <span className="block text-xs font-normal opacity-80">(save money)</span>
+            </button>
+            <button className="w-full bg-brand hover:bg-brand-700 text-white py-4 text-lg font-semibold rounded-lg transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-400 focus-visible:ring-offset-2">
+              Shop Assembled Cabinets
+              <span className="block text-xs font-normal opacity-80">(save time)</span>
+            </button>
+          </div>
         </div>
       </div>
-    </div>
+    </section>
   );
-};
-
-export default StylePage;
+}
