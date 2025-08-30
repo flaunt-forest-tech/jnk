@@ -1,16 +1,12 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { NextResponse } from 'next/server';
 import { loadMockCabinetStylesWithProducts } from '@/lib/styles.mock';
 
-export async function GET(
-  _req: NextRequest,
-  { params }: { params: Promise<{ styleName?: string | string[] | undefined }> }
-) {
+export async function GET(_req: Request, context: unknown) {
   try {
-    const { styleName } = await params;
-    const styleNameStr = Array.isArray(styleName) ? styleName[0] : (styleName ?? '');
+    const params = (context as { params?: { styleName?: string } })?.params || {};
     const all = await loadMockCabinetStylesWithProducts();
     const target = all.find(
-      (s) => s.name.toLowerCase() === decodeURIComponent(styleNameStr).toLowerCase()
+      (s) => s.name.toLowerCase() === decodeURIComponent(params.styleName || '').toLowerCase()
     );
     if (!target) {
       return NextResponse.json({ products: [] }, { status: 200 });

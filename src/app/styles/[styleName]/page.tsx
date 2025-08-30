@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { useParams } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 import type { StyleProduct, StyleProductOption } from '@/lib/types';
+import { useCart } from '@/contexts/cart-context';
 
 const placeholderImages = [
   '/assets/BaseCabinets/1-1.jpg',
@@ -24,6 +25,8 @@ export default function StylePage() {
   const [selectedOptionByProduct, setSelectedOptionByProduct] = useState<Record<string, string>>(
     {}
   );
+  const [quantityByProduct, setQuantityByProduct] = useState<Record<string, number>>({});
+  const { addItem } = useCart();
 
   const goTo = (index: number) => {
     const imagesCount = placeholderImages.length;
@@ -47,10 +50,13 @@ export default function StylePage() {
         setProducts(list);
         // initialize selected options
         const nextSelected: Record<string, string> = {};
+        const nextQty: Record<string, number> = {};
         for (const p of list) {
           if (p.options?.length) nextSelected[p.id] = p.options[0].code;
+          nextQty[p.id] = 1;
         }
         setSelectedOptionByProduct(nextSelected);
+        setQuantityByProduct(nextQty);
       } catch {
         // noop
       }
@@ -64,6 +70,28 @@ export default function StylePage() {
 
   const optionSelected = (productId: string, option: StyleProductOption) => {
     setSelectedOptionByProduct((prev) => ({ ...prev, [productId]: option.code }));
+  };
+
+  const setQty = (productId: string, value: number) => {
+    setQuantityByProduct((prev) => ({ ...prev, [productId]: Math.max(1, Math.floor(value || 1)) }));
+  };
+
+  const addSelectedToCart = (styleProduct: StyleProduct) => {
+    const selectedCode = selectedOptionByProduct[styleProduct.id];
+    const selected =
+      styleProduct.options.find((o) => o.code === selectedCode) || styleProduct.options[0];
+    const quantity = quantityByProduct[styleProduct.id] || 1;
+    const unitPriceCents = selected.discountedPrice ?? selected.price;
+    addItem({
+      styleName,
+      productId: styleProduct.id,
+      title: styleProduct.title,
+      optionCode: selected.code,
+      size: selected.size,
+      unitPriceCents,
+      quantity,
+      image: placeholderImages[0],
+    });
   };
 
   return (
@@ -289,6 +317,42 @@ export default function StylePage() {
                           )}
                         </div>
                       </div>
+                    </div>
+                    <div className="mt-3 flex items-center justify-end gap-3">
+                      <div className="flex items-center gap-2">
+                        <button
+                          onClick={() =>
+                            setQty(product.id, (quantityByProduct[product.id] || 1) - 1)
+                          }
+                          className="h-8 w-8 border border-gray-300 text-gray-700"
+                          aria-label="Decrease quantity"
+                        >
+                          −
+                        </button>
+                        <input
+                          type="number"
+                          min={1}
+                          value={quantityByProduct[product.id] || 1}
+                          onChange={(e) => setQty(product.id, Number(e.target.value))}
+                          className="w-16 h-8 border border-gray-300 text-center"
+                          aria-label="Quantity"
+                        />
+                        <button
+                          onClick={() =>
+                            setQty(product.id, (quantityByProduct[product.id] || 1) + 1)
+                          }
+                          className="h-8 w-8 border border-gray-300 text-gray-700"
+                          aria-label="Increase quantity"
+                        >
+                          +
+                        </button>
+                      </div>
+                      <button
+                        onClick={() => addSelectedToCart(product)}
+                        className="px-4 py-2 bg-brand hover:bg-brand-700 text-white rounded-md"
+                      >
+                        Add to cart
+                      </button>
                     </div>
                   </div>
                 </div>
