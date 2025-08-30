@@ -195,93 +195,93 @@ export default function StylePage() {
           const selected =
             product.options.find((o) => o.code === selectedCode) || product.options[0];
           return (
-            <div key={product.id} className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8">
+            <div key={product.id} className="grid grid-cols-1 md:grid-cols-12 gap-3 md:gap-4">
               {/* Preview (placeholder) */}
-              <div className="md:col-span-3 flex items-start">
-                <div className="relative w-40 h-52 bg-gray-100 border shadow-sm">
+              <div className="md:col-span-2 flex items-start">
+                <div className="relative w-32 h-44 bg-gray-100 border shadow-sm">
                   <Image src={placeholderImages[0]} alt="Preview" fill className="object-cover" />
                 </div>
               </div>
 
               {/* Content */}
-              <div className="md:col-span-9 border-b pb-6">
-                <h4 className="text-xl font-semibold text-gray-900">{product.title}</h4>
-                <ul className="mt-2 text-sm text-gray-700 space-y-1">
-                  {product.bullets.map((b) => (
-                    <li key={b} className="flex gap-2">
-                      <span aria-hidden className="mt-1 h-1.5 w-1.5 rounded-full bg-brand" />
-                      <span>{b}</span>
-                    </li>
-                  ))}
-                </ul>
-
-                <div className="mt-4 grid grid-cols-12 gap-4">
-                  {/* Codes */}
-                  <div className="col-span-2">
-                    <div className="text-xs uppercase text-gray-500 mb-2">Select</div>
-                    <div className="space-y-1">
-                      {product.options.map((o) => (
-                        <button
-                          key={o.code}
-                          onClick={() => optionSelected(product.id, o)}
-                          className={`px-2 py-1 text-sm border w-full text-left ${
-                            selectedCode === o.code ? 'border-brand text-brand' : 'border-gray-200'
-                          }`}
-                        >
-                          {o.code}
-                        </button>
+              <div className="md:col-span-10 border-b pb-6">
+                <div className="grid grid-cols-12 gap-3">
+                  {/* Description */}
+                  <div className="col-span-12 lg:col-span-6">
+                    <h4 className="text-xl font-semibold text-gray-900">{product.title}</h4>
+                    <ul className="mt-2 text-sm text-gray-700 space-y-1">
+                      {product.bullets.map((b) => (
+                        <li key={b} className="flex gap-2">
+                          <span aria-hidden className="mt-1 h-1.5 w-1.5 rounded-full bg-brand" />
+                          <span>{b}</span>
+                        </li>
                       ))}
-                    </div>
+                    </ul>
                   </div>
 
-                  {/* Size */}
-                  <div className="col-span-5">
-                    <div className="text-xs uppercase text-gray-500 mb-2">Size</div>
-                    <div className="flex flex-wrap gap-2">
-                      {product.options.map((o) => (
-                        <button
-                          key={o.code}
-                          onClick={() => optionSelected(product.id, o)}
-                          className={`px-3 py-2 text-sm border ${
-                            selectedCode === o.code ? 'border-brand text-brand' : 'border-gray-200'
-                          }`}
-                        >
-                          {o.size}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
+                  {/* Selections / Pricing Panel */}
+                  <div className="col-span-12 lg:col-span-6">
+                    <div className="grid grid-cols-12 gap-3">
+                      {/* Codes */}
+                      <div className="col-span-3">
+                        <div className="text-xs uppercase text-gray-500 mb-2">Select</div>
+                        <div className="space-y-1">
+                          {product.options.map((o) => (
+                            <button
+                              key={o.code}
+                              onClick={() => optionSelected(product.id, o)}
+                              className={`px-2 py-1 text-sm border w-full text-left ${
+                                selectedCode === o.code
+                                  ? 'border-brand text-brand'
+                                  : 'border-gray-200'
+                              }`}
+                            >
+                              {o.code}
+                            </button>
+                          ))}
+                        </div>
+                      </div>
 
-                  {/* Price */}
-                  <div className="col-span-3">
-                    <div className="text-xs uppercase text-gray-500 mb-2">Price</div>
-                    <div className="space-y-1">
-                      {selected?.discountedPrice ? (
-                        <>
-                          <div className="text-sm text-gray-400 line-through">
-                            {formatPrice(selected.price)}
-                          </div>
-                          <div className="text-lg font-semibold text-red-600">
-                            {formatPrice(selected.discountedPrice)}
-                          </div>
-                        </>
-                      ) : (
-                        <div className="text-lg font-semibold">{formatPrice(selected?.price)}</div>
-                      )}
-                    </div>
-                  </div>
+                      {/* Size (display only) */}
+                      <div className="col-span-6">
+                        <div className="text-xs uppercase text-gray-500 mb-2">Size</div>
+                        <div className="space-y-1">
+                          {product.options.map((o) => (
+                            <div
+                              key={o.code}
+                              aria-disabled
+                              className={`px-2 py-1 text-sm border w-full text-left select-none pointer-events-none whitespace-nowrap ${
+                                selectedCode === o.code
+                                  ? 'border-brand text-brand'
+                                  : 'border-gray-200 text-gray-500'
+                              }`}
+                            >
+                              {o.size}
+                            </div>
+                          ))}
+                        </div>
+                      </div>
 
-                  {/* Mods */}
-                  <div className="col-span-2">
-                    <div className="text-xs uppercase text-gray-500 mb-2">Options</div>
-                    <div className="flex items-center gap-2">
-                      <button className="px-3 py-2 border border-gray-200">-</button>
-                      <input
-                        aria-label="quantity"
-                        className="w-12 text-center border border-gray-200 py-2"
-                        defaultValue={1}
-                      />
-                      <button className="px-3 py-2 border border-gray-200">+</button>
+                      {/* Price */}
+                      <div className="col-span-3">
+                        <div className="text-xs uppercase text-gray-500 mb-2">Price</div>
+                        <div className="space-y-1">
+                          {selected?.discountedPrice ? (
+                            <>
+                              <div className="text-sm text-gray-400 line-through">
+                                {formatPrice(selected.price)}
+                              </div>
+                              <div className="text-lg font-semibold text-red-600">
+                                {formatPrice(selected.discountedPrice)}
+                              </div>
+                            </>
+                          ) : (
+                            <div className="text-lg font-semibold">
+                              {formatPrice(selected?.price)}
+                            </div>
+                          )}
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
