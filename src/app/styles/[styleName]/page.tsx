@@ -2,7 +2,8 @@
 
 import Image from 'next/image';
 import { useParams } from 'next/navigation';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import type { StyleProduct, StyleProductOption } from '@/lib/types';
 
 const placeholderImages = [
   '/assets/BaseCabinets/1-1.jpg',
@@ -19,6 +20,10 @@ export default function StylePage() {
       : 'Kitchen Collection';
 
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [products, setProducts] = useState<StyleProduct[]>([]);
+  const [selectedOptionByProduct, setSelectedOptionByProduct] = useState<Record<string, string>>(
+    {}
+  );
 
   const goTo = (index: number) => {
     const imagesCount = placeholderImages.length;
@@ -28,6 +33,38 @@ export default function StylePage() {
 
   const goPrev = () => goTo(currentIndex - 1);
   const goNext = () => goTo(currentIndex + 1);
+
+  useEffect(() => {
+    const controller = new AbortController();
+    const load = async () => {
+      try {
+        const res = await fetch(`/api/styles/${encodeURIComponent(styleName)}/products`, {
+          signal: controller.signal,
+        });
+        if (!res.ok) return;
+        const data = await res.json();
+        const list: StyleProduct[] = Array.isArray(data?.products) ? data.products : [];
+        setProducts(list);
+        // initialize selected options
+        const nextSelected: Record<string, string> = {};
+        for (const p of list) {
+          if (p.options?.length) nextSelected[p.id] = p.options[0].code;
+        }
+        setSelectedOptionByProduct(nextSelected);
+      } catch {
+        // noop
+      }
+    };
+    load();
+    return () => controller.abort();
+  }, [styleName]);
+
+  const formatPrice = (cents?: number) =>
+    typeof cents === 'number' ? `$${(cents / 100).toFixed(2)}` : '-';
+
+  const optionSelected = (productId: string, option: StyleProductOption) => {
+    setSelectedOptionByProduct((prev) => ({ ...prev, [productId]: option.code }));
+  };
 
   return (
     <section className="py-10">
@@ -149,6 +186,109 @@ export default function StylePage() {
             </button>
           </div>
         </div>
+      </div>
+
+      {/* Products Section */}
+      <div className="mt-16 space-y-10">
+        {products.map((product) => {
+          const selectedCode = selectedOptionByProduct[product.id];
+          const selected =
+            product.options.find((o) => o.code === selectedCode) || product.options[0];
+          return (
+            <div key={product.id} className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8">
+              {/* Preview (placeholder) */}
+              <div className="md:col-span-3 flex items-start">
+                <div className="relative w-40 h-52 bg-gray-100 border shadow-sm">
+                  <Image src={placeholderImages[0]} alt="Preview" fill className="object-cover" />
+                </div>
+              </div>
+
+              {/* Content */}
+              <div className="md:col-span-9 border-b pb-6">
+                <h4 className="text-xl font-semibold text-gray-900">{product.title}</h4>
+                <ul className="mt-2 text-sm text-gray-700 space-y-1">
+                  {product.bullets.map((b) => (
+                    <li key={b} className="flex gap-2">
+                      <span aria-hidden className="mt-1 h-1.5 w-1.5 rounded-full bg-brand" />
+                      <span>{b}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                <div className="mt-4 grid grid-cols-12 gap-4">
+                  {/* Codes */}
+                  <div className="col-span-2">
+                    <div className="text-xs uppercase text-gray-500 mb-2">Select</div>
+                    <div className="space-y-1">
+                      {product.options.map((o) => (
+                        <button
+                          key={o.code}
+                          onClick={() => optionSelected(product.id, o)}
+                          className={`px-2 py-1 text-sm border w-full text-left ${
+                            selectedCode === o.code ? 'border-brand text-brand' : 'border-gray-200'
+                          }`}
+                        >
+                          {o.code}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Size */}
+                  <div className="col-span-5">
+                    <div className="text-xs uppercase text-gray-500 mb-2">Size</div>
+                    <div className="flex flex-wrap gap-2">
+                      {product.options.map((o) => (
+                        <button
+                          key={o.code}
+                          onClick={() => optionSelected(product.id, o)}
+                          className={`px-3 py-2 text-sm border ${
+                            selectedCode === o.code ? 'border-brand text-brand' : 'border-gray-200'
+                          }`}
+                        >
+                          {o.size}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Price */}
+                  <div className="col-span-3">
+                    <div className="text-xs uppercase text-gray-500 mb-2">Price</div>
+                    <div className="space-y-1">
+                      {selected?.discountedPrice ? (
+                        <>
+                          <div className="text-sm text-gray-400 line-through">
+                            {formatPrice(selected.price)}
+                          </div>
+                          <div className="text-lg font-semibold text-red-600">
+                            {formatPrice(selected.discountedPrice)}
+                          </div>
+                        </>
+                      ) : (
+                        <div className="text-lg font-semibold">{formatPrice(selected?.price)}</div>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Mods */}
+                  <div className="col-span-2">
+                    <div className="text-xs uppercase text-gray-500 mb-2">Options</div>
+                    <div className="flex items-center gap-2">
+                      <button className="px-3 py-2 border border-gray-200">-</button>
+                      <input
+                        aria-label="quantity"
+                        className="w-12 text-center border border-gray-200 py-2"
+                        defaultValue={1}
+                      />
+                      <button className="px-3 py-2 border border-gray-200">+</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          );
+        })}
       </div>
     </section>
   );
