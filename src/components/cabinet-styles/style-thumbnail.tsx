@@ -2,7 +2,7 @@ import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Card, CardContent } from '../ui/card';
-import { CabinetStyleType } from '@/constants/data/door-styles.types';
+import { CabinetStyleType } from '@/lib/types';
 
 interface StyleThumbnailProps {
   cabinetStyle: CabinetStyleType;

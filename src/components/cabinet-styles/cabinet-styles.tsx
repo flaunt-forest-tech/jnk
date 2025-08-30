@@ -1,14 +1,18 @@
 'use client';
 import React, { useState } from 'react';
 import StyleThumbnail from './style-thumbnail';
-import { CABINET_STYLES } from '@/constants/data/door-styles.types';
 import { CircleChevronLeft, CircleChevronRight } from 'lucide-react';
+import { CabinetStyleType } from '@/lib/types';
 
 const VISIBLE_COUNT = 6;
 
-const OtherCabinetStyle: React.FC = () => {
+interface CabinetStylesProps {
+  styles: CabinetStyleType[];
+}
+
+const CabinetStyles: React.FC<CabinetStylesProps> = ({ styles }) => {
   const [index, setIndex] = useState(0);
-  const total = CABINET_STYLES.length;
+  const total = styles.length;
 
   const handlePrev = () => {
     setIndex((prev) => (prev - 1 + total) % total);
@@ -19,25 +23,31 @@ const OtherCabinetStyle: React.FC = () => {
   };
 
   // Get 7 visible styles with wrapping
-  const visibleStyles = Array.from({ length: VISIBLE_COUNT }, (_, i) => {
-    const current = (index + i) % total;
-    return CABINET_STYLES[current];
-  });
+  const visibleStyles = total
+    ? Array.from({ length: Math.min(VISIBLE_COUNT, total) }, (_, i) => {
+        const current = (index + i) % total;
+        return styles[current];
+      })
+    : [];
 
   return (
     <div className="text-center">
       <h2 className="font-bold text-5xl text-black-900 mb-6">Cabinet styles</h2>
-      <div className="flex items-center justify-center gap-4">
-        <CircleChevronLeft onClick={handlePrev} />
-        <div className="flex gap-4 flex-wrap justify-center">
-          {visibleStyles.map((style) => (
-            <StyleThumbnail key={style.name} cabinetStyle={style} />
-          ))}
+      {total === 0 ? (
+        <p className="text-gray-600">No styles available.</p>
+      ) : (
+        <div className="flex items-center justify-center gap-4">
+          <CircleChevronLeft onClick={handlePrev} />
+          <div className="flex gap-4 flex-wrap justify-center">
+            {visibleStyles.map((style) => (
+              <StyleThumbnail key={style.name} cabinetStyle={style} />
+            ))}
+          </div>
+          <CircleChevronRight onClick={handleNext} />
         </div>
-        <CircleChevronRight onClick={handleNext} />
-      </div>
+      )}
     </div>
   );
 };
 
-export default OtherCabinetStyle;
+export default CabinetStyles;
