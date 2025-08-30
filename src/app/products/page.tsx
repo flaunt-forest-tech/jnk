@@ -2,10 +2,13 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
-import { productTypes } from '../../constants/data/products-data';
+import type { ProductType } from '@/lib/types';
 
 const productImage =
   'https://cdn.prod.website-files.com/658e0f2123ee3a398167d04f/67feb3ac5c609454b94e8066_E1.avif';
+
+// Temporary: empty data until new data structure is provided
+const productTypes: ProductType[] = [];
 
 export default function Products() {
   const [selectedTypeIdx, setSelectedTypeIdx] = useState(0);
@@ -17,28 +20,32 @@ export default function Products() {
       <h1 className="text-4xl font-bold text-gray-900 mb-8">Our Products</h1>
 
       {/* Product Type Tabs */}
-      <div className="flex flex-wrap gap-2 mb-12">
-        {productTypes.map((type, idx) => (
-          <button
-            key={type.name}
-            className={`px-6 py-3 text-sm font-medium transition-all duration-200 ${
-              idx === selectedTypeIdx
-                ? 'bg-brand text-white shadow-md'
-                : 'bg-white text-gray-700 hover:bg-gray-50 border border-gray-200'
-            }`}
-            onClick={() => setSelectedTypeIdx(idx)}
-          >
-            {type.name}
-          </button>
-        ))}
-      </div>
+      {productTypes.length > 0 ? (
+        <div className="flex flex-wrap gap-2 mb-12">
+          {productTypes.map((type, idx) => (
+            <button
+              key={type.name}
+              className={`px-6 py-3 text-sm font-medium transition-all duration-200 ${
+                idx === selectedTypeIdx
+                  ? 'bg-brand text-white shadow-md'
+                  : 'bg-white text-gray-700 hover:bg-gray-50 border border-gray-200'
+              }`}
+              onClick={() => setSelectedTypeIdx(idx)}
+            >
+              {type.name}
+            </button>
+          ))}
+        </div>
+      ) : (
+        <p className="text-gray-600 mb-8">No products available.</p>
+      )}
 
       {/* Selected Type Description */}
-      <p className="text-gray-600 mb-8 max-w-3xl">{selectedType.description}</p>
+      {selectedType && <p className="text-gray-600 mb-8 max-w-3xl">{selectedType.description}</p>}
 
       {/* Products Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-        {selectedType.products.map((product) => (
+        {selectedType?.products?.map((product) => (
           <div
             key={product.name}
             className="group relative bg-white border border-gray-200 shadow-sm overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
