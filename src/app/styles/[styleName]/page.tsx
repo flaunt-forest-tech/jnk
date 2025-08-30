@@ -207,12 +207,15 @@ export default function StylePage() {
               <div className="md:col-span-10 border-b pb-6">
                 <div className="grid grid-cols-12 gap-3">
                   {/* Description */}
-                  <div className="col-span-12 lg:col-span-6">
+                  <div className="col-span-12 lg:col-span-5">
                     <h4 className="text-xl font-semibold text-gray-900">{product.title}</h4>
                     <ul className="mt-2 text-sm text-gray-700 space-y-1">
                       {product.bullets.map((b) => (
-                        <li key={b} className="flex gap-2">
-                          <span aria-hidden className="mt-1 h-1.5 w-1.5 rounded-full bg-brand" />
+                        <li key={b} className="flex items-center gap-2">
+                          <span
+                            aria-hidden
+                            className="h-1.5 w-1.5 rounded-full bg-brand flex-shrink-0"
+                          />
                           <span>{b}</span>
                         </li>
                       ))}
@@ -220,7 +223,7 @@ export default function StylePage() {
                   </div>
 
                   {/* Selections / Pricing Panel */}
-                  <div className="col-span-12 lg:col-span-6">
+                  <div className="col-span-12 lg:col-span-7">
                     <div className="grid grid-cols-12 gap-3">
                       {/* Codes */}
                       <div className="col-span-3">
@@ -247,17 +250,18 @@ export default function StylePage() {
                         <div className="text-xs uppercase text-gray-500 mb-2">Size</div>
                         <div className="space-y-1">
                           {product.options.map((o) => (
-                            <div
+                            <button
                               key={o.code}
-                              aria-disabled
-                              className={`px-2 py-1 text-sm border w-full text-left select-none pointer-events-none whitespace-nowrap ${
+                              onClick={() => optionSelected(product.id, o)}
+                              aria-pressed={selectedCode === o.code}
+                              className={`px-2 py-1 text-sm border w-full text-left whitespace-nowrap ${
                                 selectedCode === o.code
                                   ? 'border-brand text-brand'
-                                  : 'border-gray-200 text-gray-500'
+                                  : 'border-gray-200 hover:border-gray-300'
                               }`}
                             >
                               {o.size}
-                            </div>
+                            </button>
                           ))}
                         </div>
                       </div>
