@@ -188,6 +188,9 @@ export default function StylePage() {
         </div>
       </div>
 
+      {/* Divider */}
+      <div className="my-10 border-t border-gray-200" />
+
       {/* Products Section */}
       <div className="mt-16 space-y-10">
         {products.map((product) => {
